@@ -1,21 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>ShopZone - 亚马逊商城</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Protect Our Animals</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        :root {
-            --primary: #131921;
-            --secondary: #232f3e;
-            --accent: #ff9900;
-            --accent-dark: #f39c12;
-            --bg: #e3e6e6;
-            --card-bg: #ffffff;
-            --text-main: #111111;
-            --text-sub: #555555;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -23,987 +12,327 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        /* 顶部深色条 */
-        .top-bar {
-            background-color: var(--primary);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 6px 16px;
-            font-size: 12px;
-        }
-
-        .top-bar-left, .top-bar-right {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-
-        .top-bar a {
-            color: #ffffff;
-            opacity: 0.9;
-        }
-
-        .top-bar a:hover {
-            opacity: 1;
-        }
-
-        /* 主导航栏 */
-        .header {
-            background-color: var(--primary);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            padding: 8px 16px;
-            gap: 16px;
-        }
-
-        .header-logo {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .header-logo-main {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .header-logo-sub {
-            font-size: 10px;
-            color: #ddd;
-        }
-
-        .header-location {
-            display: flex;
-            flex-direction: column;
-            font-size: 11px;
-            padding: 4px 8px;
-            border-radius: 2px;
-        }
-
-        .header-location:hover,
-        .header-account:hover,
-        .header-orders:hover,
-        .header-cart:hover {
-            outline: 1px solid #ffffff44;
-            cursor: pointer;
-        }
-
-        .header-location-title {
-            color: #cccccc;
-        }
-
-        .header-location-value {
-            font-weight: 600;
-        }
-
-        .header-search {
-            flex: 1;
-            display: flex;
-            align-items: stretch;
-            max-width: 700px;
-        }
-
-        .header-search-select {
-            background-color: #f3f3f3;
-            border-radius: 4px 0 0 4px;
-            border: none;
-            padding: 0 8px;
-            font-size: 12px;
-            min-width: 80px;
-        }
-
-        .header-search-input {
-            flex: 1;
-            padding: 8px 10px;
-            border: none;
-            font-size: 14px;
-        }
-
-        .header-search-button {
-            background-color: var(--accent);
-            border-radius: 0 4px 4px 0;
-            border: none;
-            padding: 0 16px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .header-search-button:hover {
-            background-color: var(--accent-dark);
-        }
-
-        .header-account, .header-orders, .header-cart {
-            display: flex;
-            flex-direction: column;
-            font-size: 11px;
-            padding: 4px 8px;
-            border-radius: 2px;
-        }
-
-        .header-account span:nth-child(2),
-        .header-orders span:nth-child(2),
-        .header-cart span:nth-child(2) {
-            font-weight: 600;
-            font-size: 12px;
-        }
-
-        .header-cart {
-            flex-direction: row;
-            align-items: center;
-            gap: 4px;
-            font-size: 18px;
-        }
-
-        .header-cart span {
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        /* 次级导航 */
-        .sub-nav {
-            background-color: var(--secondary);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 6px 16px;
-            font-size: 13px;
-            white-space: nowrap;
-            overflow-x: auto;
-        }
-
-        .sub-nav-item {
-            padding: 4px 6px;
-            border-radius: 2px;
-            cursor: pointer;
-        }
-
-        .sub-nav-item:hover {
-            background-color: #ffffff10;
-        }
-
-        .sub-nav-menu {
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* 主体内容 */
-        .page-wrapper {
-            max-width: 1500px;
-            margin: 0 auto;
-        }
-
-        .hero-area {
-            position: relative;
-        }
-
-        .hero-banner {
-            background: linear-gradient(90deg, #1e3c72, #2a5298);
-            color: #ffffff;
-            padding: 24px 16px 200px;  /* 留空间给下面的卡片 */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-image: url("https://via.placeholder.com/1500x400?text=Banner+Image");
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero-overlay {
-            background: linear-gradient(90deg, rgba(0,0,0,0.75), rgba(0,0,0,0.2));
-            position: absolute;
-            inset: 0;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 480px;
-        }
-
-        .hero-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .hero-subtitle {
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background-color: var(--accent);
-            color: #111;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .hero-cta:hover {
-            background-color: var(--accent-dark);
-        }
-
-        .hero-secondary-links {
-            margin-top: 10px;
-            font-size: 12px;
-        }
-
-        .hero-secondary-links a {
-            color: #ffecb3;
-            margin-right: 12px;
-        }
-
-        .hero-banner-right {
-            position: relative;
-            z-index: 1;
-            max-width: 360px;
-            background-color: #ffffffee;
-            border-radius: 8px;
-            padding: 12px 16px;
-            color: #111;
-        }
-
-        .hero-banner-right h3 {
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .hero-banner-right ul {
-            font-size: 12px;
-            color: #555;
-        }
-
-        .hero-banner-right li {
-            margin-bottom: 4px;
-        }
-
-        /* 内容区：浮动商品卡片 */
-        .content-section {
-            margin-top: -140px; /* 浮在 banner 上 */
-            padding: 0 16px 40px;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 16px;
-        }
-
-        @media (max-width: 1200px) {
-            .card-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 900px) {
-            .header {
-                flex-wrap: wrap;
-            }
-            .hero-banner {
-                padding-bottom: 260px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .card-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 600px) {
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-banner {
-                padding-bottom: 280px;
-            }
-        }
-
-        .home-card {
-            background-color: var(--card-bg);
-            padding: 16px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px #00000012;
-        }
-
-        .home-card h2 {
-            font-size: 18px;
-            margin-bottom: 12px;
-        }
-
-        .home-card-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 8px;
-            font-size: 12px;
-        }
-
-        .home-card-grid-item img {
-            border-radius: 4px;
-            margin-bottom: 4px;
-        }
-
-        .home-card-footer {
-            margin-top: 12px;
-            font-size: 12px;
-            color: #007185;
-            cursor: pointer;
-        }
-
-        /* 商品列表区域 */
-        .product-section {
-            margin-top: 24px;
-        }
-
-        .section-title {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-
-        .product-row {
-            display: grid;
-            grid-auto-flow: column;
-            grid-auto-columns: minmax(180px, 220px);
-            gap: 12px;
-            overflow-x: auto;
-            padding-bottom: 4px;
-        }
-
-        .product-card {
-            background-color: #ffffff;
-            border-radius: 4px;
-            padding: 8px;
-            box-shadow: 0 1px 3px #00000011;
-            min-height: 260px;
-        }
-
-        .product-img-wrapper {
-            background-color: #f8f8f8;
-            border-radius: 4px;
-            padding: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 150px;
-        }
-
-        .product-title {
-            font-size: 13px;
-            margin-top: 8px;
-            min-height: 32px;
-        }
-
-        .product-rating {
-            font-size: 12px;
-            color: #f0c14b;
-            margin-top: 4px;
-        }
-
-        .product-price {
-            margin-top: 4px;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .product-price span {
-            font-size: 11px;
-            font-weight: 400;
-            vertical-align: top;
-        }
-
-        .product-delivery {
-            font-size: 11px;
-            color: #555;
-            margin-top: 2px;
-        }
-
-        /* 中间大banner */
-        .middle-banner {
-            margin-top: 24px;
-            background-color: #ffffff;
-            border-radius: 4px;
-            padding: 16px;
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-
-        .middle-banner-content {
-            flex: 1;
-        }
-
-        .middle-banner-content h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .middle-banner-content p {
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-
-        .middle-banner-cta {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 8px 14px;
-            border-radius: 4px;
-            background-color: var(--accent);
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .middle-banner-cta:hover {
-            background-color: var(--accent-dark);
-        }
-
-        .middle-banner-image {
-            width: 280px;
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 900px) {
-            .middle-banner {
-                flex-direction: column;
-            }
-            .middle-banner-image {
-                width: 100%;
-            }
-        }
-
-        /* 底部登录提示 */
-        .signin-prompt {
-            margin: 32px 0 16px;
-            background-color: #ffffff;
-            border-top: 1px solid #dddddd;
-            border-bottom: 1px solid #dddddd;
-            padding: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c7a7b, #38b2ac);
+            color: #fff;
+            padding: 40px 20px;
             text-align: center;
-            font-size: 13px;
         }
 
-        .signin-prompt button {
-            margin-top: 8px;
-            padding: 6px 40px;
-            border-radius: 4px;
-            border: 1px solid #a88734;
-            background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .signin-prompt button:hover {
-            filter: brightness(0.98);
-        }
-
-        .signin-prompt small {
-            display: block;
-            margin-top: 4px;
-            color: #555;
-        }
-
-        .signin-prompt a {
-            color: #007185;
-        }
-
-        /* 页脚 */
-        .footer-backtotop {
-            background-color: #37475a;
-            color: #ffffff;
-            text-align: center;
-            padding: 10px 0;
-            font-size: 13px;
-            cursor: pointer;
-        }
-
-        .footer-main {
-            background-color: #232f3e;
-            color: #dddddd;
-            padding: 32px 16px;
-        }
-
-        .footer-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 16px;
-            font-size: 13px;
-        }
-
-        @media (max-width: 900px) {
-            .footer-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 600px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .footer-col-title {
-            font-weight: 700;
+        header h1 {
+            font-size: 2.4rem;
             margin-bottom: 10px;
         }
 
-        .footer-link {
-            margin-bottom: 6px;
+        header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .footer-link a {
-            color: #dddddd;
-            font-size: 12px;
+        nav {
+            background: #1a202c;
+            color: #fff;
+            padding: 10px 20px;
         }
 
-        .footer-bottom {
-            background-color: #131921;
-            color: #cccccc;
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: #81e6d9;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 15px 40px;
+        }
+
+        section {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        section h2 {
+            margin-bottom: 10px;
+            color: #2c7a7b;
+        }
+
+        section p {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: #e6fffa;
+            border-left: 4px solid #38b2ac;
+            padding: 10px 12px;
+            border-radius: 4px;
+            margin: 10px 0 15px;
+            font-size: 0.95rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .card {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #edf2f7;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+            color: #2b6cb0;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            font-size: 0.95rem;
+        }
+
+        .stats-list {
+            padding-left: 18px;
+            margin-top: 8px;
+        }
+
+        .stats-list li {
+            margin-bottom: 4px;
+        }
+
+        .cta {
             text-align: center;
-            font-size: 12px;
-            padding: 12px 16px 18px;
+            margin-top: 10px;
         }
 
-        .footer-bottom-logo {
-            font-weight: 700;
-            margin-bottom: 4px;
+        .cta a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 18px;
+            border-radius: 99px;
+            background: #2b6cb0;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.98rem;
         }
 
-        .footer-bottom-links {
-            margin-bottom: 4px;
+        .cta a:hover {
+            background: #2c5282;
         }
 
-        .footer-bottom-links a {
-            margin: 0 6px;
-            color: #cccccc;
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+            background: #1a202c;
+            color: #e2e8f0;
+        }
+
+        footer a {
+            color: #81e6d9;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+<header>
+    <h1>Protect Our Animals</h1>
+    <p>
+        Animals share this planet with us. Protecting them means protecting our forests,
+        oceans, and future generations.
+    </p>
+</header>
 
-    <!-- 顶部工具条 -->
-    <div class="top-bar">
-        <div class="top-bar-left">
-            <span>欢迎来到 ShopZone 示例商城</span>
+<nav>
+    <ul>
+        <li><a href="#why">Why Animals Need Protection</a></li>
+        <li><a href="#threats">Main Threats</a></li>
+        <li><a href="#how-to-help">How You Can Help</a></li>
+        <li><a href="#kids">For Students &amp; Kids</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="why">
+        <h2>Why Animals Need Protection</h2>
+        <p>
+            Wild animals keep nature in balance. They help control insects, spread seeds,
+            and keep forests and oceans healthy. When animal species disappear, entire
+            ecosystems can collapse.
+        </p>
+        <p>
+            Today, thousands of species are in danger of extinction. Many of them may
+            disappear forever if we do not take action.
+        </p>
+
+        <div class="highlight">
+            Every creature plays a role in nature. Protecting even one animal species
+            can protect an entire web of life.
         </div>
-        <div class="top-bar-right">
-            <a href="#">帮助</a>
-            <a href="#">客户服务</a>
-            <a href="#">下载APP</a>
-        </div>
-    </div>
+    </section>
 
-    <!-- 主导航栏 -->
-    <header class="header">
-        <!-- 左：logo -->
-        <div class="header-logo">
-            <span class="header-logo-main">ShopZone</span>
-            <span class="header-logo-sub">.global</span>
-        </div>
+    <section id="threats">
+        <h2>Main Threats to Animals</h2>
+        <p>Animals are threatened by many human activities. Some of the most serious are:</p>
 
-        <!-- 收货地址 -->
-        <div class="header-location">
-            <span class="header-location-title">送货至</span>
-            <span class="header-location-value">中国大陆</span>
-        </div>
-
-        <!-- 搜索框 -->
-        <form class="header-search" action="#" method="get">
-            <select class="header-search-select" name="cat">
-                <option value="all">全部分类</option>
-                <option value="book">图书</option>
-                <option value="electronics">电子</option>
-                <option value="fashion">服饰</option>
-            </select>
-            <input class="header-search-input" type="text" name="q" placeholder="搜索商品、品牌或类别…" />
-            <button class="header-search-button" type="submit">🔍</button>
-        </form>
-
-        <!-- 账户 / 订单 / 购物车 -->
-        <div class="header-account">
-            <span>你好, 请登录</span>
-            <span>账户及列表 ▾</span>
-        </div>
-        <div class="header-orders">
-            <span>退货</span>
-            <span>和订单</span>
-        </div>
-        <div class="header-cart">
-            🛒
-            <span>购物车</span>
-        </div>
-    </header>
-
-    <!-- 次级导航 -->
-    <nav class="sub-nav">
-        <div class="sub-nav-item sub-nav-menu">☰ 全部</div>
-        <div class="sub-nav-item">今日优惠</div>
-        <div class="sub-nav-item">畅销榜</div>
-        <div class="sub-nav-item">新品上架</div>
-        <div class="sub-nav-item">数码科技</div>
-        <div class="sub-nav-item">家居生活</div>
-        <div class="sub-nav-item">图书文娱</div>
-        <div class="sub-nav-item">Prime 专区</div>
-        <div class="sub-nav-item">国际品牌馆</div>
-    </nav>
-
-    <div class="page-wrapper">
-
-        <!-- 顶部大 Banner -->
-        <section class="hero-area">
-            <div class="hero-banner">
-                <div class="hero-overlay"></div>
-
-                <div class="hero-content">
-                    <h1 class="hero-title">年终大促 · 限时抢购</h1>
-                    <p class="hero-subtitle">
-                        海量商品直降，精选电子产品、家居好物、潮流服饰等，
-                        加入会员享受专属折扣与更快物流体验。
-                    </p>
-                    <a href="#" class="hero-cta">
-                        立即逛逛热卖专区 →
-                    </a>
-                    <div class="hero-secondary-links">
-                        <a href="#">电子产品精选</a>
-                        <a href="#">家居生活折扣</a>
-                        <a href="#">更多分类</a>
-                    </div>
-                </div>
-
-                <aside class="hero-banner-right">
-                    <h3>为你推荐 · 个性化首页</h3>
-                    <ul>
-                        <li>根据你的浏览记录推荐商品</li>
-                        <li>一键查看订单与物流</li>
-                        <li>收藏夹同步多设备</li>
-                        <li>专属优惠券实时推送</li>
-                    </ul>
-                    <p style="margin-top: 8px; font-size: 12px;">登录后即可体验个性化推荐服务。</p>
-                </aside>
+        <div class="cards">
+            <div class="card">
+                <h3>Habitat Loss</h3>
+                <p>
+                    Forests are cut down, wetlands are drained, and grasslands are turned
+                    into cities and farms. When habitats disappear, animals lose their homes.
+                </p>
+                <ul>
+                    <li>Deforestation for farming and logging</li>
+                    <li>Urban expansion and road building</li>
+                    <li>Pollution that poisons land and water</li>
+                </ul>
             </div>
-        </section>
 
-        <!-- 内容区：4个主卡片 -->
-        <main class="content-section">
-            <section class="card-grid">
+            <div class="card">
+                <h3>Illegal Hunting &amp; Trade</h3>
+                <p>
+                    Many animals are hunted for meat, fur, horns, or as pets. Some species
+                    are killed faster than they can reproduce.
+                </p>
+                <ul>
+                    <li>Poaching of elephants and rhinos</li>
+                    <li>Illegal trade in exotic birds and reptiles</li>
+                    <li>Overfishing of sharks and other sea animals</li>
+                </ul>
+            </div>
 
-                <!-- 卡片1：电子产品 -->
-                <article class="home-card">
-                    <h2>热门电子产品</h2>
-                    <div class="home-card-grid">
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=手机" alt="手机">
-                            <div>5G 智能手机</div>
-                        </div>
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=耳机" alt="耳机">
-                            <div>降噪耳机</div>
-                        </div>
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=笔记本" alt="笔记本">
-                            <div>轻薄本 / 游戏本</div>
-                        </div>
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=智能手表" alt="智能穿戴">
-                            <div>智能穿戴设备</div>
-                        </div>
-                    </div>
-                    <div class="home-card-footer">查看更多电子产品 &gt;</div>
-                </article>
-
-                <!-- 卡片2：家居生活 -->
-                <article class="home-card">
-                    <h2>家居生活馆</h2>
-                    <div class="home-card-grid">
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=厨房" alt="厨房用品">
-                            <div>厨房小家电</div>
-                        </div>
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=卧室" alt="卧室用品">
-                            <div>床品 / 枕头</div>
-                        </div>
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=收纳" alt="收纳">
-                            <div>收纳整理</div>
-                        </div>
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=装饰" alt="装饰">
-                            <div>家居装饰</div>
-                        </div>
-                    </div>
-                    <div class="home-card-footer">进入家居频道 &gt;</div>
-                </article>
-
-                <!-- 卡片3：服饰时尚 -->
-                <article class="home-card">
-                    <h2>服饰时尚</h2>
-                    <div class="home-card-grid">
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=男装" alt="男装">
-                            <div>男士潮流</div>
-                        </div>
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=女装" alt="女装">
-                            <div>女士精选</div>
-                        </div>
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=鞋" alt="鞋">
-                            <div>运动鞋 / 休闲鞋</div>
-                        </div>
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=配饰" alt="配饰">
-                            <div>饰品配件</div>
-                        </div>
-                    </div>
-                    <div class="home-card-footer">更多服饰好物 &gt;</div>
-                </article>
-
-                <!-- 卡片4：图书文娱 -->
-                <article class="home-card">
-                    <h2>图书文娱</h2>
-                    <div class="home-card-grid">
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=小说" alt="小说">
-                            <div>小说文学</div>
-                        </div>
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=少儿书" alt="少儿书">
-                            <div>少儿读物</div>
-                        </div>
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=教辅" alt="教辅">
-                            <div>考试教辅</div>
-                        </div>
-                        <div class="home-card-grid-item">
-                            <img src="https://via.placeholder.com/300x300?text=漫画" alt="漫画">
-                            <div>漫画 / 画集</div>
-                        </div>
-                    </div>
-                    <div class="home-card-footer">畅销榜单 &gt;</div>
-                </article>
-
-            </section>
-
-            <!-- 商品滑动区 -->
-            <section class="product-section">
-                <h2 class="section-title">根据你的浏览记录推荐</h2>
-                <div class="product-row">
-
-                    <article class="product-card">
-                        <div class="product-img-wrapper">
-                            <img src="https://via.placeholder.com/200x200?text=显示器" alt="显示器">
-                        </div>
-                        <div class="product-title">27英寸 2K 高刷显示器，适合游戏与设计</div>
-                        <div class="product-rating">★★★★★ 4.7</div>
-                        <div class="product-price"><span>¥</span>1,599</div>
-                        <div class="product-delivery">明日送达 · 免费退货</div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-img-wrapper">
-                            <img src="https://via.placeholder.com/200x200?text=键盘" alt="机械键盘">
-                        </div>
-                        <div class="product-title">RGB 机械键盘，青轴，104 键全键无冲</div>
-                        <div class="product-rating">★★★★☆ 4.3</div>
-                        <div class="product-price"><span>¥</span>399</div>
-                        <div class="product-delivery">预计 2 天送达</div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-img-wrapper">
-                            <img src="https://via.placeholder.com/200x200?text=耳机" alt="耳机">
-                        </div>
-                        <div class="product-title">真无线降噪耳机，支持快充与无线充电</div>
-                        <div class="product-rating">★★★★★ 4.8</div>
-                        <div class="product-price"><span>¥</span>699</div>
-                        <div class="product-delivery">今日下单 · 明日达</div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-img-wrapper">
-                            <img src="https://via.placeholder.com/200x200?text=路由器" alt="路由器">
-                        </div>
-                        <div class="product-title">Wi-Fi 6 全屋覆盖路由器套装，支持 Mesh</div>
-                        <div class="product-rating">★★★★☆ 4.4</div>
-                        <div class="product-price"><span>¥</span>499</div>
-                        <div class="product-delivery">限时满减优惠</div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-img-wrapper">
-                            <img src="https://via.placeholder.com/200x200?text=移动硬盘" alt="移动硬盘">
-                        </div>
-                        <div class="product-title">2TB USB-C 移动固态硬盘，传输高速稳定</div>
-                        <div class="product-rating">★★★★★ 4.9</div>
-                        <div class="product-price"><span>¥</span>899</div>
-                        <div class="product-delivery">Prime 免费次日达</div>
-                    </article>
-
-                </div>
-            </section>
-
-            <!-- 中部 Banner -->
-            <section class="middle-banner">
-                <div class="middle-banner-content">
-                    <h3>加入会员 · 享专属权益</h3>
-                    <p>
-                        成为 ShopZone 会员后，您可享受：不限次数的快速物流、会员专享价、云端照片存储、
-                        视频和音乐流媒体服务等更多权益。
-                    </p>
-                    <p style="font-size: 12px; color: #555;">
-                        会员可随时取消，试用期结束后将按月自动续费。
-                    </p>
-                    <a href="#" class="middle-banner-cta">立即试用 30 天免费会员</a>
-                </div>
-                <div class="middle-banner-image">
-                    <img src="https://via.placeholder.com/500x250?text=Membership+Benefits" alt="会员权益">
-                </div>
-            </section>
-
-            <!-- 第二个商品区 -->
-            <section class="product-section">
-                <h2 class="section-title">家居精选 · 提升生活品质</h2>
-                <div class="product-row">
-
-                    <article class="product-card">
-                        <div class="product-img-wrapper">
-                            <img src="https://via.placeholder.com/200x200?text=咖啡机" alt="咖啡机">
-                        </div>
-                        <div class="product-title">胶囊咖啡机，一键萃取香浓咖啡</div>
-                        <div class="product-rating">★★★★☆ 4.5</div>
-                        <div class="product-price"><span>¥</span>599</div>
-                        <div class="product-delivery">免邮 · 预计 3 日送达</div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-img-wrapper">
-                            <img src="https://via.placeholder.com/200x200?text=台灯" alt="台灯">
-                        </div>
-                        <div class="product-title">护眼台灯，多档色温亮度可调</div>
-                        <div class="product-rating">★★★★★ 4.8</div>
-                        <div class="product-price"><span>¥</span>199</div>
-                        <div class="product-delivery">今日下单 · 明日达</div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-img-wrapper">
-                            <img src="https://via.placeholder.com/200x200?text=收纳盒" alt="收纳盒">
-                        </div>
-                        <div class="product-title">衣柜收纳盒套装，可折叠设计</div>
-                        <div class="product-rating">★★★★☆ 4.4</div>
-                        <div class="product-price"><span>¥</span>89</div>
-                        <div class="product-delivery">限时买二送一</div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-img-wrapper">
-                            <img src="https://via.placeholder.com/200x200?text=枕头" alt="枕头">
-                        </div>
-                        <div class="product-title">记忆棉枕头，贴合颈椎设计，舒适睡眠</div>
-                        <div class="product-rating">★★★★★ 4.9</div>
-                        <div class="product-price"><span>¥</span>129</div>
-                        <div class="product-delivery">Prime 次日达 · 免费退货</div>
-                    </article>
-
-                </div>
-            </section>
-
-            <!-- 登录提示 -->
-            <section class="signin-prompt">
-                <div>查看个性化推荐，请登录或注册账户。</div>
-                <button type="button">登录 / 注册</button>
-                <small>新用户？<a href="#">创建你的 ShopZone 账户</a></small>
-            </section>
-        </main>
-    </div>
-
-    <!-- 页脚 -->
-    <footer>
-        <div class="footer-backtotop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-            返回顶部
+            <div class="card">
+                <h3>Climate Change</h3>
+                <p>
+                    Rising temperatures and changing weather affect where animals can live.
+                    Some species cannot move or adapt quickly enough.
+                </p>
+                <ul>
+                    <li>Melting sea ice for polar bears</li>
+                    <li>Coral bleaching in warm oceans</li>
+                    <li>Changing seasons for birds and insects</li>
+                </ul>
+            </div>
         </div>
+    </section>
 
-        <div class="footer-main">
-            <div class="footer-grid">
-                <div>
-                    <div class="footer-col-title">了解我们</div>
-                    <div class="footer-link"><a href="#">关于 ShopZone</a></div>
-                    <div class="footer-link"><a href="#">加入我们</a></div>
-                    <div class="footer-link"><a href="#">新闻中心</a></div>
-                    <div class="footer-link"><a href="#">投资者关系</a></div>
-                </div>
-                <div>
-                    <div class="footer-col-title">与我们合作</div>
-                    <div class="footer-link"><a href="#">卖家中心</a></div>
-                    <div class="footer-link"><a href="#">广告合作</a></div>
-                    <div class="footer-link"><a href="#">渠道分销</a></div>
-                    <div class="footer-link"><a href="#">物流合作</a></div>
-                </div>
-                <div>
-                    <div class="footer-col-title">支付方式</div>
-                    <div class="footer-link"><a href="#">银行卡支付</a></div>
-                    <div class="footer-link"><a href="#">数字钱包</a></div>
-                    <div class="footer-link"><a href="#">礼品卡</a></div>
-                    <div class="footer-link"><a href="#">优惠券</a></div>
-                </div>
-                <div>
-                    <div class="footer-col-title">帮助与支持</div>
-                    <div class="footer-link"><a href="#">帮助中心</a></div>
-                    <div class="footer-link"><a href="#">退换货政策</a></div>
-                    <div class="footer-link"><a href="#">配送说明</a></div>
-                    <div class="footer-link"><a href="#">账户安全</a></div>
-                </div>
+    <section id="how-to-help">
+        <h2>How You Can Help Protect Animals</h2>
+        <p>
+            Every person can do something. Even small actions, repeated by millions of
+            people, can create big change.
+        </p>
+
+        <div class="cards">
+            <div class="card">
+                <h3>In Your Daily Life</h3>
+                <ul>
+                    <li>Use less plastic and recycle properly.</li>
+                    <li>Save energy and water at home.</li>
+                    <li>Choose products that are not tested on animals.</li>
+                    <li>Eat less meat and choose sustainable food.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Support Conservation</h3>
+                <ul>
+                    <li>Donate to trusted wildlife organizations.</li>
+                    <li>Adopt an animal symbolically to support its care.</li>
+                    <li>Volunteer for local clean-ups and tree planting.</li>
+                    <li>Visit national parks and respect the rules.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Be a Voice for Animals</h3>
+                <ul>
+                    <li>Share information about endangered species.</li>
+                    <li>Teach friends and family how to protect nature.</li>
+                    <li>Speak out against illegal hunting and wildlife trade.</li>
+                    <li>Support laws that protect animals and habitats.</li>
+                </ul>
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <div class="footer-bottom-logo">ShopZone.global</div>
-            <div class="footer-bottom-links">
-                <a href="#">使用条款</a> |
-                <a href="#">隐私声明</a> |
-                <a href="#">Cookie 设置</a>
-            </div>
+        <div class="cta">
+            <p>
+                Protecting animals is not only the job of governments and scientists.
+                It is the responsibility of all of us.
+            </p>
+            <a href="#kids">Start learning and helping today</a>
         </div>
-    </footer>
+    </section>
 
+    <section id="kids">
+        <h2>For Students &amp; Kids</h2>
+        <p>
+            Children and students can become powerful protectors of animals. Here are
+            simple ideas for school projects or home activities:
+        </p>
+        <ul class="stats-list">
+            <li>Create posters about endangered animals and display them at school.</li>
+            <li>Organize a “No Plastic Day” in your class or family.</li>
+            <li>Plant a tree or make a small garden for birds and insects.</li>
+            <li>Write a short story or draw a comic about an animal hero.</li>
+        </ul>
+
+        <div class="highlight">
+            Remember: You are never too young to make a difference. Your actions can
+            inspire others to care about animals and our planet.
+        </div>
+    </section>
+</main>
+
+<footer>
+    &copy; <span id="year"></span> Protect Our Animals. All rights reserved.
+    <br />
+    Made with care for wildlife and the planet.
+</footer>
+
+<script>
+    // Simple script to always show the current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
-

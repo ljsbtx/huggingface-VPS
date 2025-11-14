@@ -1,722 +1,1009 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <title>ShopZone - 类亚马逊商城静态页示例</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary: #131921;
+            --secondary: #232f3e;
+            --accent: #ff9900;
+            --accent-dark: #f39c12;
+            --bg: #e3e6e6;
+            --card-bg: #ffffff;
+            --text-main: #111111;
+            --text-sub: #555555;
         }
 
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
         }
 
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
+        ul {
             list-style: none;
         }
 
-        nav ul li {
-            margin-left: 2rem;
+        img {
+            max-width: 100%;
+            display: block;
         }
 
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
+        /* 顶部深色条 */
+        .top-bar {
+            background-color: var(--primary);
+            color: #ffffff;
             display: flex;
             align-items: center;
-            text-align: center;
-            color: var(--white);
+            justify-content: space-between;
+            padding: 6px 16px;
+            font-size: 12px;
         }
 
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .top-bar-left, .top-bar-right {
+            display: flex;
+            gap: 16px;
+            align-items: center;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        .top-bar a {
+            color: #ffffff;
+            opacity: 0.9;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+        .top-bar a:hover {
+            opacity: 1;
         }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
+        /* 主导航栏 */
+        .header {
             background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            gap: 16px;
         }
 
-        section {
-            padding: 5rem 0;
+        .header-logo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
+        .header-logo-main {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
+        .header-logo-sub {
+            font-size: 10px;
+            color: #ddd;
         }
 
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
+        .header-location {
+            display: flex;
+            flex-direction: column;
+            font-size: 11px;
+            padding: 4px 8px;
             border-radius: 2px;
         }
 
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
+        .header-location:hover,
+        .header-account:hover,
+        .header-orders:hover,
+        .header-cart:hover {
+            outline: 1px solid #ffffff44;
             cursor: pointer;
         }
 
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
+        .header-location-title {
+            color: #cccccc;
+        }
+
+        .header-location-value {
+            font-weight: 600;
+        }
+
+        .header-search {
+            flex: 1;
+            display: flex;
+            align-items: stretch;
+            max-width: 700px;
+        }
+
+        .header-search-select {
+            background-color: #f3f3f3;
+            border-radius: 4px 0 0 4px;
+            border: none;
+            padding: 0 8px;
+            font-size: 12px;
+            min-width: 80px;
+        }
+
+        .header-search-input {
+            flex: 1;
+            padding: 8px 10px;
+            border: none;
+            font-size: 14px;
+        }
+
+        .header-search-button {
+            background-color: var(--accent);
+            border-radius: 0 4px 4px 0;
+            border: none;
+            padding: 0 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-search-button:hover {
+            background-color: var(--accent-dark);
+        }
+
+        .header-account, .header-orders, .header-cart {
+            display: flex;
+            flex-direction: column;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 2px;
+        }
+
+        .header-account span:nth-child(2),
+        .header-orders span:nth-child(2),
+        .header-cart span:nth-child(2) {
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .header-cart {
+            flex-direction: row;
+            align-items: center;
+            gap: 4px;
+            font-size: 18px;
+        }
+
+        .header-cart span {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* 次级导航 */
+        .sub-nav {
+            background-color: var(--secondary);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 6px 16px;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        .sub-nav-item {
+            padding: 4px 6px;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .sub-nav-item:hover {
+            background-color: #ffffff10;
+        }
+
+        .sub-nav-menu {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 主体内容 */
+        .page-wrapper {
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .hero-area {
+            position: relative;
+        }
+
+        .hero-banner {
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            color: #ffffff;
+            padding: 24px 16px 200px;  /* 留空间给下面的卡片 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-image: url("https://via.placeholder.com/1500x400?text=Banner+Image");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(90deg, rgba(0,0,0,0.75), rgba(0,0,0,0.2));
+            position: absolute;
+            inset: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+        }
+
+        .hero-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--accent);
+            color: #111;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .hero-cta:hover {
+            background-color: var(--accent-dark);
+        }
+
+        .hero-secondary-links {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .hero-secondary-links a {
+            color: #ffecb3;
+            margin-right: 12px;
+        }
+
+        .hero-banner-right {
+            position: relative;
+            z-index: 1;
+            max-width: 360px;
+            background-color: #ffffffee;
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #111;
+        }
+
+        .hero-banner-right h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .hero-banner-right ul {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .hero-banner-right li {
+            margin-bottom: 4px;
+        }
+
+        /* 内容区：浮动商品卡片 */
+        .content-section {
+            margin-top: -140px; /* 浮在 banner 上 */
+            padding: 0 16px 40px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        @media (max-width: 1200px) {
+            .card-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+        @media (max-width: 900px) {
+            .header {
+                flex-wrap: wrap;
             }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
+            .hero-banner {
+                padding-bottom: 260px;
                 flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                align-items: flex-start;
             }
-            
-            nav ul.active {
-                display: flex;
+            .card-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
+        }
+
+        @media (max-width: 600px) {
+            .card-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
+            .hero-banner {
+                padding-bottom: 280px;
             }
-            
-            .stats {
+        }
+
+        .home-card {
+            background-color: var(--card-bg);
+            padding: 16px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px #00000012;
+        }
+
+        .home-card h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .home-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .home-card-grid-item img {
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+
+        .home-card-footer {
+            margin-top: 12px;
+            font-size: 12px;
+            color: #007185;
+            cursor: pointer;
+        }
+
+        /* 商品列表区域 */
+        .product-section {
+            margin-top: 24px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .product-row {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(180px, 220px);
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border-radius: 4px;
+            padding: 8px;
+            box-shadow: 0 1px 3px #00000011;
+            min-height: 260px;
+        }
+
+        .product-img-wrapper {
+            background-color: #f8f8f8;
+            border-radius: 4px;
+            padding: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px;
+        }
+
+        .product-title {
+            font-size: 13px;
+            margin-top: 8px;
+            min-height: 32px;
+        }
+
+        .product-rating {
+            font-size: 12px;
+            color: #f0c14b;
+            margin-top: 4px;
+        }
+
+        .product-price {
+            margin-top: 4px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .product-price span {
+            font-size: 11px;
+            font-weight: 400;
+            vertical-align: top;
+        }
+
+        .product-delivery {
+            font-size: 11px;
+            color: #555;
+            margin-top: 2px;
+        }
+
+        /* 中间大banner */
+        .middle-banner {
+            margin-top: 24px;
+            background-color: #ffffff;
+            border-radius: 4px;
+            padding: 16px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .middle-banner-content {
+            flex: 1;
+        }
+
+        .middle-banner-content h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .middle-banner-content p {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .middle-banner-cta {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 8px 14px;
+            border-radius: 4px;
+            background-color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .middle-banner-cta:hover {
+            background-color: var(--accent-dark);
+        }
+
+        .middle-banner-image {
+            width: 280px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 900px) {
+            .middle-banner {
+                flex-direction: column;
+            }
+            .middle-banner-image {
+                width: 100%;
+            }
+        }
+
+        /* 底部登录提示 */
+        .signin-prompt {
+            margin: 32px 0 16px;
+            background-color: #ffffff;
+            border-top: 1px solid #dddddd;
+            border-bottom: 1px solid #dddddd;
+            padding: 16px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .signin-prompt button {
+            margin-top: 8px;
+            padding: 6px 40px;
+            border-radius: 4px;
+            border: 1px solid #a88734;
+            background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .signin-prompt button:hover {
+            filter: brightness(0.98);
+        }
+
+        .signin-prompt small {
+            display: block;
+            margin-top: 4px;
+            color: #555;
+        }
+
+        .signin-prompt a {
+            color: #007185;
+        }
+
+        /* 页脚 */
+        .footer-backtotop {
+            background-color: #37475a;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .footer-main {
+            background-color: #232f3e;
+            color: #dddddd;
+            padding: 32px 16px;
+        }
+
+        .footer-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
+        .footer-col-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-link {
+            margin-bottom: 6px;
+        }
+
+        .footer-link a {
+            color: #dddddd;
+            font-size: 12px;
+        }
+
+        .footer-bottom {
+            background-color: #131921;
+            color: #cccccc;
+            text-align: center;
+            font-size: 12px;
+            padding: 12px 16px 18px;
+        }
+
+        .footer-bottom-logo {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .footer-bottom-links {
+            margin-bottom: 4px;
+        }
+
+        .footer-bottom-links a {
+            margin: 0 6px;
+            color: #cccccc;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+
+    <!-- 顶部工具条 -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <span>欢迎来到 ShopZone 示例商城</span>
+        </div>
+        <div class="top-bar-right">
+            <a href="#">帮助</a>
+            <a href="#">客户服务</a>
+            <a href="#">下载APP</a>
+        </div>
+    </div>
+
+    <!-- 主导航栏 -->
+    <header class="header">
+        <!-- 左：logo -->
+        <div class="header-logo">
+            <span class="header-logo-main">ShopZone</span>
+            <span class="header-logo-sub">.global</span>
+        </div>
+
+        <!-- 收货地址 -->
+        <div class="header-location">
+            <span class="header-location-title">送货至</span>
+            <span class="header-location-value">中国大陆</span>
+        </div>
+
+        <!-- 搜索框 -->
+        <form class="header-search" action="#" method="get">
+            <select class="header-search-select" name="cat">
+                <option value="all">全部分类</option>
+                <option value="book">图书</option>
+                <option value="electronics">电子</option>
+                <option value="fashion">服饰</option>
+            </select>
+            <input class="header-search-input" type="text" name="q" placeholder="搜索商品、品牌或类别…" />
+            <button class="header-search-button" type="submit">🔍</button>
+        </form>
+
+        <!-- 账户 / 订单 / 购物车 -->
+        <div class="header-account">
+            <span>你好, 请登录</span>
+            <span>账户及列表 ▾</span>
+        </div>
+        <div class="header-orders">
+            <span>退货</span>
+            <span>和订单</span>
+        </div>
+        <div class="header-cart">
+            🛒
+            <span>购物车</span>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
-        </div>
-    </section>
+    <!-- 次级导航 -->
+    <nav class="sub-nav">
+        <div class="sub-nav-item sub-nav-menu">☰ 全部</div>
+        <div class="sub-nav-item">今日优惠</div>
+        <div class="sub-nav-item">畅销榜</div>
+        <div class="sub-nav-item">新品上架</div>
+        <div class="sub-nav-item">数码科技</div>
+        <div class="sub-nav-item">家居生活</div>
+        <div class="sub-nav-item">图书文娱</div>
+        <div class="sub-nav-item">Prime 专区</div>
+        <div class="sub-nav-item">国际品牌馆</div>
+    </nav>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="page-wrapper">
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- 顶部大 Banner -->
+        <section class="hero-area">
+            <div class="hero-banner">
+                <div class="hero-overlay"></div>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <div class="hero-content">
+                    <h1 class="hero-title">年终大促 · 限时抢购</h1>
+                    <p class="hero-subtitle">
+                        海量商品直降，精选电子产品、家居好物、潮流服饰等，
+                        加入会员享受专属折扣与更快物流体验。
+                    </p>
+                    <a href="#" class="hero-cta">
+                        立即逛逛热卖专区 →
+                    </a>
+                    <div class="hero-secondary-links">
+                        <a href="#">电子产品精选</a>
+                        <a href="#">家居生活折扣</a>
+                        <a href="#">更多分类</a>
                     </div>
                 </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
+
+                <aside class="hero-banner-right">
+                    <h3>为你推荐 · 个性化首页</h3>
+                    <ul>
+                        <li>根据你的浏览记录推荐商品</li>
+                        <li>一键查看订单与物流</li>
+                        <li>收藏夹同步多设备</li>
+                        <li>专属优惠券实时推送</li>
                     </ul>
+                    <p style="margin-top: 8px; font-size: 12px;">登录后即可体验个性化推荐服务。</p>
+                </aside>
+            </div>
+        </section>
+
+        <!-- 内容区：4个主卡片 -->
+        <main class="content-section">
+            <section class="card-grid">
+
+                <!-- 卡片1：电子产品 -->
+                <article class="home-card">
+                    <h2>热门电子产品</h2>
+                    <div class="home-card-grid">
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=手机" alt="手机">
+                            <div>5G 智能手机</div>
+                        </div>
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=耳机" alt="耳机">
+                            <div>降噪耳机</div>
+                        </div>
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=笔记本" alt="笔记本">
+                            <div>轻薄本 / 游戏本</div>
+                        </div>
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=智能手表" alt="智能穿戴">
+                            <div>智能穿戴设备</div>
+                        </div>
+                    </div>
+                    <div class="home-card-footer">查看更多电子产品 &gt;</div>
+                </article>
+
+                <!-- 卡片2：家居生活 -->
+                <article class="home-card">
+                    <h2>家居生活馆</h2>
+                    <div class="home-card-grid">
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=厨房" alt="厨房用品">
+                            <div>厨房小家电</div>
+                        </div>
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=卧室" alt="卧室用品">
+                            <div>床品 / 枕头</div>
+                        </div>
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=收纳" alt="收纳">
+                            <div>收纳整理</div>
+                        </div>
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=装饰" alt="装饰">
+                            <div>家居装饰</div>
+                        </div>
+                    </div>
+                    <div class="home-card-footer">进入家居频道 &gt;</div>
+                </article>
+
+                <!-- 卡片3：服饰时尚 -->
+                <article class="home-card">
+                    <h2>服饰时尚</h2>
+                    <div class="home-card-grid">
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=男装" alt="男装">
+                            <div>男士潮流</div>
+                        </div>
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=女装" alt="女装">
+                            <div>女士精选</div>
+                        </div>
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=鞋" alt="鞋">
+                            <div>运动鞋 / 休闲鞋</div>
+                        </div>
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=配饰" alt="配饰">
+                            <div>饰品配件</div>
+                        </div>
+                    </div>
+                    <div class="home-card-footer">更多服饰好物 &gt;</div>
+                </article>
+
+                <!-- 卡片4：图书文娱 -->
+                <article class="home-card">
+                    <h2>图书文娱</h2>
+                    <div class="home-card-grid">
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=小说" alt="小说">
+                            <div>小说文学</div>
+                        </div>
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=少儿书" alt="少儿书">
+                            <div>少儿读物</div>
+                        </div>
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=教辅" alt="教辅">
+                            <div>考试教辅</div>
+                        </div>
+                        <div class="home-card-grid-item">
+                            <img src="https://via.placeholder.com/300x300?text=漫画" alt="漫画">
+                            <div>漫画 / 画集</div>
+                        </div>
+                    </div>
+                    <div class="home-card-footer">畅销榜单 &gt;</div>
+                </article>
+
+            </section>
+
+            <!-- 商品滑动区 -->
+            <section class="product-section">
+                <h2 class="section-title">根据你的浏览记录推荐</h2>
+                <div class="product-row">
+
+                    <article class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://via.placeholder.com/200x200?text=显示器" alt="显示器">
+                        </div>
+                        <div class="product-title">27英寸 2K 高刷显示器，适合游戏与设计</div>
+                        <div class="product-rating">★★★★★ 4.7</div>
+                        <div class="product-price"><span>¥</span>1,599</div>
+                        <div class="product-delivery">明日送达 · 免费退货</div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://via.placeholder.com/200x200?text=键盘" alt="机械键盘">
+                        </div>
+                        <div class="product-title">RGB 机械键盘，青轴，104 键全键无冲</div>
+                        <div class="product-rating">★★★★☆ 4.3</div>
+                        <div class="product-price"><span>¥</span>399</div>
+                        <div class="product-delivery">预计 2 天送达</div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://via.placeholder.com/200x200?text=耳机" alt="耳机">
+                        </div>
+                        <div class="product-title">真无线降噪耳机，支持快充与无线充电</div>
+                        <div class="product-rating">★★★★★ 4.8</div>
+                        <div class="product-price"><span>¥</span>699</div>
+                        <div class="product-delivery">今日下单 · 明日达</div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://via.placeholder.com/200x200?text=路由器" alt="路由器">
+                        </div>
+                        <div class="product-title">Wi-Fi 6 全屋覆盖路由器套装，支持 Mesh</div>
+                        <div class="product-rating">★★★★☆ 4.4</div>
+                        <div class="product-price"><span>¥</span>499</div>
+                        <div class="product-delivery">限时满减优惠</div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://via.placeholder.com/200x200?text=移动硬盘" alt="移动硬盘">
+                        </div>
+                        <div class="product-title">2TB USB-C 移动固态硬盘，传输高速稳定</div>
+                        <div class="product-rating">★★★★★ 4.9</div>
+                        <div class="product-price"><span>¥</span>899</div>
+                        <div class="product-delivery">Prime 免费次日达</div>
+                    </article>
+
                 </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
+            </section>
+
+            <!-- 中部 Banner -->
+            <section class="middle-banner">
+                <div class="middle-banner-content">
+                    <h3>加入会员 · 享专属权益</h3>
+                    <p>
+                        成为 ShopZone 会员后，您可享受：不限次数的快速物流、会员专享价、云端照片存储、
+                        视频和音乐流媒体服务等更多权益。
+                    </p>
+                    <p style="font-size: 12px; color: #555;">
+                        会员可随时取消，试用期结束后将按月自动续费。
+                    </p>
+                    <a href="#" class="middle-banner-cta">立即试用 30 天免费会员</a>
                 </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
+                <div class="middle-banner-image">
+                    <img src="https://via.placeholder.com/500x250?text=Membership+Benefits" alt="会员权益">
+                </div>
+            </section>
+
+            <!-- 第二个商品区 -->
+            <section class="product-section">
+                <h2 class="section-title">家居精选 · 提升生活品质</h2>
+                <div class="product-row">
+
+                    <article class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://via.placeholder.com/200x200?text=咖啡机" alt="咖啡机">
+                        </div>
+                        <div class="product-title">胶囊咖啡机，一键萃取香浓咖啡</div>
+                        <div class="product-rating">★★★★☆ 4.5</div>
+                        <div class="product-price"><span>¥</span>599</div>
+                        <div class="product-delivery">免邮 · 预计 3 日送达</div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://via.placeholder.com/200x200?text=台灯" alt="台灯">
+                        </div>
+                        <div class="product-title">护眼台灯，多档色温亮度可调</div>
+                        <div class="product-rating">★★★★★ 4.8</div>
+                        <div class="product-price"><span>¥</span>199</div>
+                        <div class="product-delivery">今日下单 · 明日达</div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://via.placeholder.com/200x200?text=收纳盒" alt="收纳盒">
+                        </div>
+                        <div class="product-title">衣柜收纳盒套装，可折叠设计</div>
+                        <div class="product-rating">★★★★☆ 4.4</div>
+                        <div class="product-price"><span>¥</span>89</div>
+                        <div class="product-delivery">限时买二送一</div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://via.placeholder.com/200x200?text=枕头" alt="枕头">
+                        </div>
+                        <div class="product-title">记忆棉枕头，贴合颈椎设计，舒适睡眠</div>
+                        <div class="product-rating">★★★★★ 4.9</div>
+                        <div class="product-price"><span>¥</span>129</div>
+                        <div class="product-delivery">Prime 次日达 · 免费退货</div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- 登录提示 -->
+            <section class="signin-prompt">
+                <div>查看个性化推荐，请登录或注册账户。</div>
+                <button type="button">登录 / 注册</button>
+                <small>新用户？<a href="#">创建你的 ShopZone 账户</a></small>
+            </section>
+        </main>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-backtotop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            返回顶部
+        </div>
+
+        <div class="footer-main">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-col-title">了解我们</div>
+                    <div class="footer-link"><a href="#">关于 ShopZone</a></div>
+                    <div class="footer-link"><a href="#">加入我们</a></div>
+                    <div class="footer-link"><a href="#">新闻中心</a></div>
+                    <div class="footer-link"><a href="#">投资者关系</a></div>
+                </div>
+                <div>
+                    <div class="footer-col-title">与我们合作</div>
+                    <div class="footer-link"><a href="#">卖家中心</a></div>
+                    <div class="footer-link"><a href="#">广告合作</a></div>
+                    <div class="footer-link"><a href="#">渠道分销</a></div>
+                    <div class="footer-link"><a href="#">物流合作</a></div>
+                </div>
+                <div>
+                    <div class="footer-col-title">支付方式</div>
+                    <div class="footer-link"><a href="#">银行卡支付</a></div>
+                    <div class="footer-link"><a href="#">数字钱包</a></div>
+                    <div class="footer-link"><a href="#">礼品卡</a></div>
+                    <div class="footer-link"><a href="#">优惠券</a></div>
+                </div>
+                <div>
+                    <div class="footer-col-title">帮助与支持</div>
+                    <div class="footer-link"><a href="#">帮助中心</a></div>
+                    <div class="footer-link"><a href="#">退换货政策</a></div>
+                    <div class="footer-link"><a href="#">配送说明</a></div>
+                    <div class="footer-link"><a href="#">账户安全</a></div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-logo">ShopZone.global</div>
+            <div class="footer-bottom-links">
+                <a href="#">使用条款</a> |
+                <a href="#">隐私声明</a> |
+                <a href="#">Cookie 设置</a>
             </div>
+            <div>© 2025 ShopZone 示例页面。本页面仅为前端静态示例，不涉及真实交易。</div>
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
 </body>
-
 </html>
